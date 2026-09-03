@@ -22,15 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::create('books', function (Blueprint $table) {
-        $table->id();
-        $table->string('judul');
-        $table->string('penulis');
-        $table->integer('tahun_terbit');
-        $table->integer('stok');
-        $table->timestamps();
-    });
+        Schema::dropIfExists('books');
     }
 };
-
-
