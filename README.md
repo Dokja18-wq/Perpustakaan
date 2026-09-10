@@ -59,9 +59,8 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT). -->
 
 
-APP Perpustakaan
-
-Konsep MVC (Model-View-Controller)
--Model : mengambil, menyimpan, dan mengolah data. misal: validasi input atau query SQL
--View : Menampilkan data dari Model ke bentuk HTML, CSS, JSON, atau tampilan UI secara rapi.
--Controller : Menerima request dari pengguna (misal: klik tombol atau submit form), menyuruh Model mengambil/mengolah data yang sesuai, lalu mengirimkan data hasil olahan tersebut ke View untuk ditampilkan.
+##APP Perpustakaan
+#Konsep MVC (Model-View-Controller)
+1. Model : mengambil, menyimpan, dan mengolah data. misal: validasi input atau query SQL
+2. View : Menampilkan data dari Model ke bentuk HTML, CSS, JSON, atau tampilan UI secara rapi.
+3. Controller : Menerima request dari pengguna (misal: klik tombol atau submit form), menyuruh Model mengambil/mengolah data yang sesuai, lalu mengirimkan data hasil olahan tersebut ke View untuk ditampilkan.
