@@ -1,22 +1,14 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <title>Daftar Buku</title>
-</head>
-<body>
-    <h2>Daftar Buku</h2>
+{{-- File: resources/views/books/index.blade.php --}}
+@extends('layouts.app')
 
-    @if (session('success'))
-        <div style="background-color: #d4edda; color: #155724; padding: 10px; margin-bottom: 15px;">
-            {{ session('success') }}
-        </div>
-    @endif
+@section('title', 'Daftar Buku')
 
-    <a href="{{ route('books.create') }}">+ Tambah Buku</a>
-    <br><br>
+@section('content')
+    <h1>Daftar Buku</h1>
 
-    <table border="1" cellpadding="8" cellspacing="0">
+    <p><a href="{{ route('books.create') }}" class="btn">+ Tambah Buku</a></p>
+
+    <table>
         <thead>
             <tr>
                 <th>ID</th>
@@ -24,7 +16,6 @@
                 <th>Penulis</th>
                 <th>Penerbit</th>
                 <th>Tahun</th>
-                <th>ISBN</th>
                 <th>Stok</th>
                 <th>Kategori</th>
                 <th>Aksi</th>
@@ -38,19 +29,27 @@
                     <td>{{ $book['penulis'] }}</td>
                     <td>{{ $book['penerbit'] }}</td>
                     <td>{{ $book['tahun_terbit'] }}</td>
-                    <td>{{ $book['isbn'] }}</td>
                     <td>{{ $book['stok'] }}</td>
                     <td>{{ $book['kategori'] }}</td>
                     <td>
+                        <a href="{{ route('books.show', $book['id']) }}">Detail</a>
+                        |
                         <a href="{{ route('books.edit', $book['id']) }}">Edit</a>
+                        |
+                        <form class="inline" action="{{ route('books.destroy', $book['id']) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Hapus</button>
+                        </form>
                     </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="9">Tidak ada data buku.</td>
+                    <td colspan="8">Belum ada data buku.</td>
                 </tr>
             @endforelse
         </tbody>
     </table>
-</body>
-</html>
+
+    <p><em>Catatan: data di atas masih data dummy (array statis di Controller), belum dari database. Migration &amp; Model Eloquent baru dibuat di Pertemuan 5.</em></p>
+@endsection
