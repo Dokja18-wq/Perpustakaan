@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Blok users ini sudah digabungkan dengan kolom 'role'
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('role', ['admin', 'petugas'])->default('petugas'); // Kolom role dipindah ke sini
             $table->rememberToken();
             $table->timestamps();
         });

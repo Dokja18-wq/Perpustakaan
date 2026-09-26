@@ -6,10 +6,19 @@ use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
-    public function index()
-    {
-        return 'MemberController@index';
-    }
+    // File: app/Http/Controllers/MemberController.php
+private array $members = [
+    ['id' => 1, 'nama' => 'Ryan Adi Pratama', 'nim' => '3125600097', 'email' => 'dokja@pens.ac.id', 'nomor_telepon' => '085780107552', 'status' => 'aktif'],
+    ['id' => 2, 'nama' => 'Athiqa Fairuz Nur Khalisa', 'nim' => '3125600121', 'email' => 'soyoung@pens.ac.id', 'nomor_telepon' => '085157881252', 'status' => 'aktif'],
+    ['id' => 3, 'nama' => 'M. Ezra Athallah', 'nim' => '31256000138', 'email' => 'junghyuk@pens.ac.id', 'nomor_telepon' => '085745332491', 'status' => 'nonaktif'],
+];
+
+public function index()
+{
+    $members = $this->members;
+
+    return view('members.index', compact('members'));
+}
 
     public function create()
     {
