@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreMemberRequest;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
@@ -15,19 +16,28 @@ private array $members = [
 
 public function index()
 {
-    $members = $this->members;
+    $members = session('members', $this->members);
 
     return view('members.index', compact('members'));
 }
 
     public function create()
     {
-        return 'MemberController@create';
+        return view('members.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreMemberRequest $request)
     {
-        return 'MemberController@store';
+        $validated = $request->validated();
+
+        $members = session('members', $this->members);
+        $validated['id'] = count($members) + 1;
+        $members[] = $validated;
+
+        session(['members' => $members]);
+
+        return redirect()->route('members.index')
+            ->with('success', 'Anggota berhasil ditambahkan!');
     }
 
     public function show(string $id)
