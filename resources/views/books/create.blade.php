@@ -1,10 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Tambah Anggota')
+@section('title', 'Tambah Buku')
 
 @section('content')
 <div class="container">
-    <h1>Tambah Anggota Baru</h1>
+    <h1>Tambah Buku Baru</h1>
+    <a href="{{ route('books.index') }}">← Kembali ke daftar</a>
+    <br><br>
 
     @if ($errors->any())
         <div style="color: red; margin-bottom: 15px;">
@@ -16,43 +18,41 @@
         </div>
     @endif
 
-    <form action="{{ route('members.store') }}" method="POST">
+    <form action="{{ route('books.store') }}" method="POST">
         @csrf
         <div>
-            <label for="nama">Nama:</label><br>
-            <input type="text" id="nama" name="nama" value="{{ old('nama') }}">
+            <label for="judul">Judul Buku:</label><br>
+            <input type="text" id="judul" name="judul" value="{{ old('judul') }}">
+            @error('judul')
+                <div style="color: red;">{{ $message }}</div>
+            @enderror
         </div>
         <br>
         <div>
-            <label for="nim">NIM:</label><br>
-            <input type="text" id="nim" name="nim" value="{{ old('nim') }}">
+            <label for="penulis">Penulis:</label><br>
+            <input type="text" id="penulis" name="penulis" value="{{ old('penulis') }}">
+            @error('penulis')
+                <div style="color: red;">{{ $message }}</div>
+            @enderror
         </div>
         <br>
         <div>
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" value="{{ old('email') }}">
+            <label for="penerbit">Penerbit:</label><br>
+            <input type="text" id="penerbit" name="penerbit" value="{{ old('penerbit') }}">
+            @error('penerbit')
+                <div style="color: red;">{{ $message }}</div>
+            @enderror
         </div>
         <br>
         <div>
-            <label for="nomor_telepon">Nomor Telepon:</label><br>
-            <input type="text" id="nomor_telepon" name="nomor_telepon" value="{{ old('nomor_telepon') }}">
+            <label for="tahun_terbit">Tahun Terbit:</label><br>
+            <input type="number" id="tahun_terbit" name="tahun_terbit" value="{{ old('tahun_terbit') }}">
+            @error('tahun_terbit')
+                <div style="color: red;">{{ $message }}</div>
+            @enderror
         </div>
         <br>
-        <div>
-            <label for="alamat">Alamat:</label><br>
-            <textarea id="alamat" name="alamat">{{ old('alamat') }}</textarea>
-        </div>
-        <br>
-        <div>
-            <label for="status">Status:</label><br>
-            <select id="status" name="status">
-                <option value="aktif" {{ old('status') == 'aktif' ? 'selected' : '' }}>Aktif</option>
-                <option value="nonaktif" {{ old('status') == 'nonaktif' ? 'selected' : '' }}>Non-Aktif</option>
-            </select>
-        </div>
-        <br>
-        <button type="submit">Simpan</button>
-        <a href="{{ route('members.index') }}">Batal</a>
+        <button type="submit">Simpan Buku</button>
     </form>
 </div>
 @endsection

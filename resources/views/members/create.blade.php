@@ -5,6 +5,8 @@
 @section('content')
 <div class="container">
     <h1>Tambah Anggota Baru</h1>
+    <a href="{{ route('members.index') }}">← Kembali ke daftar</a>
+    <br><br>
 
     @if ($errors->any())
         <div style="color: red; margin-bottom: 15px;">
