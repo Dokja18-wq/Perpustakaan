@@ -6,8 +6,10 @@ use App\Http\Controllers\LoanController;
 use App\Http\Controllers\MemberController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+Route::prefix('admin')->group(function () {
+    Route::get('/info', function () {
+        return 'Halaman Informasi Admin';
+    });
 });
 
 Route::resource('books', BookController::class);
